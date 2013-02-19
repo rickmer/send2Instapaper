@@ -1,0 +1,15 @@
+<script src="jquery.js"></script>
+<script>  
+	safari.application.addEventListener("command", performCommand, false);  
+	function performCommand(event) {  
+		if (event.command == "save2instapaper") {
+		    $.ajax({  type: "POST",
+					  url: "https://www.instapaper.com/api/add",
+					  data: { password: safari.extension.secureSettings['pass'], username: safari.extension.secureSettings['user'], url: safari.application.activeBrowserWindow.activeTab.url}
+					}).done(function( msg ) {
+					  alert( "Data Saved: " + msg );
+					});
+		}
+	}  
+</script>
+
