@@ -2,13 +2,28 @@
 <script>  
 	safari.application.addEventListener("command", performCommand, false);  
 	function performCommand(event) {  
+		
 		if (event.command == "save2instapaper") {
-		    $.ajax({  type: "POST",
-					  url: "https://www.instapaper.com/api/add",
-					  data: { password: safari.extension.secureSettings['pass'], username: safari.extension.secureSettings['user'], url: safari.application.activeBrowserWindow.activeTab.url}
-					}).done(function( msg ) {
-					  alert( "Data Saved: " + msg );
-					});
+
+		    if (	typeof(safari.extension.secureSettings['pass']) == 'undefined'
+		    	||	safari.extension.secureSettings['pass'] == null
+		    	|| 	safari.extension.secureSettings['pass'] == ''
+		    	||	typeof(safari.extension.secureSettings['user']) == 'undefined'
+		    	||	safari.extension.secureSettings['user'] == null
+		    	||	safari.extension.secureSettings['user'] == '') {
+		    	safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("info", "nouserdata");
+
+		    } else {
+
+		    	safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("info", "saving");
+			    $.ajax({  type: "POST",
+						  url: "https://www.instapaper.com/api/add",
+						  data: { password: safari.extension.secureSettings['pass'], username: safari.extension.secureSettings['user'], url: safari.application.activeBrowserWindow.activeTab.url}
+						}).done(function( msg ) {
+						  safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("api", msg);
+						});
+			
+			}
 		}
 	}  
 </script>

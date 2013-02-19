@@ -7,9 +7,9 @@
 	<key>Builder Version</key>
 	<string>8536.26.17</string>
 	<key>CFBundleDisplayName</key>
-	<string>Send2Instapaper</string>
+	<string>Add2Instapaper</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.rickmer.send2instapaper</string>
+	<string>com.rickmer.add2instapaper</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
@@ -26,16 +26,38 @@
 				<key>Identifier</key>
 				<string>instapaper</string>
 				<key>Title</key>
-				<string>test</string>
+				<string>add to instapaper</string>
 			</dict>
 		</array>
 		<key>Global Page</key>
 		<string>global.html</string>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string>save2instapaper</string>
+				<key>Identifier</key>
+				<string>instabutton</string>
+				<key>Image</key>
+				<string>icon64x64.png</string>
+				<key>Label</key>
+				<string>Add to Instapaper</string>
+				<key>Popover</key>
+				<string>alertPopover</string>
+				<key>Tool Tip</key>
+				<string>Add to Instapaper</string>
+			</dict>
+		</array>
 	</dict>
 	<key>Content</key>
 	<dict>
 		<key>Scripts</key>
-		<dict/>
+		<dict>
+			<key>End</key>
+			<array>
+				<string>inject_script.js</string>
+			</array>
+		</dict>
 	</dict>
 	<key>Description</key>
 	<string>Saves a bookmark to Instapaper</string>
