@@ -58,6 +58,10 @@
 				<string>inject_script.js</string>
 			</array>
 		</dict>
+		<key>Stylesheets</key>
+		<array>
+			<string>inject_style.css</string>
+		</array>
 	</dict>
 	<key>Description</key>
 	<string>Saves a bookmark to Instapaper</string>
