@@ -31,6 +31,19 @@
 		</array>
 		<key>Global Page</key>
 		<string>global.html</string>
+		<key>Popovers</key>
+		<array>
+			<dict>
+				<key>Filename</key>
+				<string>popover_201.html</string>
+				<key>Height</key>
+				<real>25</real>
+				<key>Identifier</key>
+				<string>instaPopOver201</string>
+				<key>Width</key>
+				<real>60</real>
+			</dict>
+		</array>
 		<key>Toolbar Items</key>
 		<array>
 			<dict>
@@ -42,8 +55,10 @@
 				<string>icon64x64.png</string>
 				<key>Label</key>
 				<string>Add to Instapaper</string>
+				<key>Palette Label</key>
+				<string></string>
 				<key>Popover</key>
-				<string>alertPopover</string>
+				<string>instaPopOver</string>
 				<key>Tool Tip</key>
 				<string>Add to Instapaper</string>
 			</dict>

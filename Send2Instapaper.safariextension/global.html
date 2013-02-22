@@ -1,8 +1,10 @@
 <script src="jquery.js"></script>
 <script>  
-	safari.application.addEventListener("command", performCommand, false);  
+	// setup stuff
+	safari.application.addEventListener("command", performCommand, false); 
+	
 	function performCommand(event) {  
-		
+
 		if (event.command == "save2instapaper") {
 
 		    if (	typeof(safari.extension.secureSettings['pass']) == 'undefined'
@@ -11,20 +13,30 @@
 		    	||	typeof(safari.extension.secureSettings['user']) == 'undefined'
 		    	||	safari.extension.secureSettings['user'] == null
 		    	||	safari.extension.secureSettings['user'] == '') {
-		    	safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("info", "nouserdata");
+
+		    	//safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("info", "nouserdata"); fixme!!
 
 		    } else {
 
-		    	safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("info", "saving");
 			    $.ajax({  type: "POST",
 						  url: "https://www.instapaper.com/api/add",
 						  data: { password: safari.extension.secureSettings['pass'], username: safari.extension.secureSettings['user'], url: safari.application.activeBrowserWindow.activeTab.url}
 						}).done(function( msg ) {
-						  safari.application.activeBrowserWindow.activeTab.page.dispatchMessage("api", msg);
+				  			showPopOver(msg); 
 						});
-			
 			}
 		}
 	}  
+
+function showPopOver(msg) {
+
+	if (msg == '201') {
+		safari.extension.toolbarItems[0].popover = safari.extension.popovers[0]; 
+		safari.extension.toolbarItems[0].showPopover();
+		setTimeout('safari.extension.toolbarItems[0].popover.hide()',700);
+		setTimeout('safari.extension.toolbarItems[0].popover = null',800);
+	}
+}
+
 </script>
 
